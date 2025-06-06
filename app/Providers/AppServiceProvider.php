@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\BookService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,9 +12,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
-        //
+        $this->app->singleton(BookService::class, function ($app) {
+            return new BookService();
+        });
     }
 
     /**
